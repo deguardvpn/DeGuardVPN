@@ -56,3 +56,4 @@ RUN echo "wg syncconf wg0 <(wg-quick strip wg0)"> update.sh
 
 EXPOSE 51820/udp
 
+ENTRYPOINT ["wg-quick", "up", "wg0"]
