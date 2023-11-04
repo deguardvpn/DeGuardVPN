@@ -17,7 +17,7 @@ services:
       - INTERNAL_SUBNET=10.0.0.0/18 #optional
       - ALLOWEDIPS=0.0.0.0/0 #optional
       #- PERSISTENTKEEPALIVE_PEERS= #optional
-      - LOG_CONFS=false #optional
+      - LOG_CONFS=true #optional
     volumes:
       - /opt/wiregiard-server/config:/config
       - /lib/modules:/lib/modules #optional
