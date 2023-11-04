@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1
-
 FROM ghcr.io/linuxserver/baseimage-alpine:3.18
 
 # set version label
@@ -37,7 +35,6 @@ RUN \
     WIREGUARD_RELEASE=$(curl -sX GET "https://api.github.com/repos/WireGuard/wireguard-tools/tags" \
     | jq -r .[0].name); \
   fi && \
-  cd / && \
   cd /app && \
   git clone https://git.zx2c4.com/wireguard-tools && \
   cd wireguard-tools && \
@@ -53,7 +50,9 @@ RUN \
     /tmp/*
 
 RUN echo "wg syncconf wg0 <(wg-quick strip wg0)"> update.sh
+CMD ["wg-quick", "up", "wg0"]
+# add local files
+COPY /root /
 
+# ports and volumes
 EXPOSE 51820/udp
-
-ENTRYPOINT ["wg-quick", "up", "wg0"]
