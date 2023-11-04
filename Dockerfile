@@ -54,6 +54,4 @@ RUN \
 
 RUN echo "wg syncconf wg0 <(wg-quick strip wg0)"> rs.sh
 
-CMD ["wg-quick", "up", "wg0"]
-# ports and volumesdo
 EXPOSE 51820/udp
