@@ -50,7 +50,7 @@ RUN \
     /tmp/*
 
 RUN echo "wg syncconf wg0 <(wg-quick strip wg0)"> update.sh
-CMD ["wg-quick", "up", "wg0"]
+
 # add local files
 COPY /root /
 
