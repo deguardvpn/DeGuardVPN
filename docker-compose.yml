@@ -19,7 +19,7 @@ services:
       #- PERSISTENTKEEPALIVE_PEERS= #optional
       - LOG_CONFS=true #optional
     volumes:
-      - /opt/wiregiard-server/config:/config
+      - /opt/wireguard_alpine/config:/config
       - /lib/modules:/lib/modules #optional
     ports:
       - 51820:51820/udp
