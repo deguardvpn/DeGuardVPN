@@ -55,3 +55,5 @@ RUN \
 RUN echo "wg syncconf wg0 <(wg-quick strip wg0)"> rs.sh
 
 EXPOSE 51820/udp
+
+CMD ["wg-quick", "up", "wg0"]
