@@ -60,11 +60,11 @@ RUN echo "wg syncconf wg0 <(wg-quick strip wg0)"> update.sh
 COPY . /
 
 RUN pip install -r requirements.txt
+
 # add local files
 
-
-CMD ["uvicorn", "main:app"]
+CMD ["uvicorn", "main:app", "--host", "192.168.240.2", "--port", "8001"]
 
 # ports and volumes
 EXPOSE 51820/udp
-EXPOSE 8000:8000
+EXPOSE 8000

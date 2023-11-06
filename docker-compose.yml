@@ -1,8 +1,8 @@
 version: "3"
 services:
   wireguard:
-    build:
-      dockerfile: Dockerfile
+    build: wireguard/.
+    # dockerfile: Dockerfile
     container_name: wireguard
     cap_add:
       - NET_ADMIN
@@ -22,9 +22,32 @@ services:
     volumes:
       - /opt/wireguard_alpine/config:/config
       - /lib/modules:/lib/modules #optional
+    networks:
+      net:
+        ipv4_address: 192.168.240.2
     ports:
       - 51820:51820/udp
+      - 8001:8001
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
 
+  vpn_api:
+    build: vpn_api/.
+    container_name: vpn_api
+    volumes:
+      - /opt/wireguard_alpine/config:/config
+    networks:
+      net:
+        ipv4_address: 192.168.240.3
+    ports:
+      - 8000:8000
+
+
+networks:
+  net:
+    driver: bridge  
+    ipam:
+      config:
+        - subnet: 192.168.240.0/24
+  

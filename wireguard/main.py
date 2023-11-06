@@ -12,7 +12,7 @@ security = HTTPBasic()
 
 @app.get("/api/sync_configs")
 async def sync_conf():
-    os.system("su root ./update.sh.sh")
+    os.system("su root ./update.sh")
 
 
 app.add_middleware(
