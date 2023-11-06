@@ -81,12 +81,16 @@ def main(user_id: str):
     if find_configs(serv_conf) == 0:
         allow_ip = '10.0.0.2'
     else:
+        print(serv_conf)
+
+        print()
+
+        print(serv_conf.split('\n')[-2].split())
         last_ip = serv_conf.split('\n')[-2].split()[-1].split('.')
+        print(last_ip)
         last_ip[-1] = last_ip[-1].split('/')[0]
 
         allow_ip = increment_act(str(last_ip))
-        if not allow_ip:
-            return 'ERROR'
 
     with open(f'{path_to_wg}/server/publickey-server', 'r') as f:
         server_pub_key = f.read()
