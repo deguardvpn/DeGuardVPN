@@ -83,7 +83,7 @@ def main(user_id: str):
     else:
         last_ip = serv_conf.split('\n')[-4].split()[-1].split('.')
         last_ip[-1] = last_ip[-1].split('/')[0]
-        
+
         allow_ip = increment_act(str(last_ip))
 
     with open(f'{path_to_wg}/server/publickey-server', 'r') as f:
@@ -116,6 +116,6 @@ PersistentKeepalive = 20
     # with open(f"{path_to_wg}/user_configs/{user_id}.conf", 'w') as f:
     #     f.write(user_config)
 
-    r = requests.get("http://192.168.240.2:8000/api/sync_configs")
+    r = requests.get("http://192.168.240.2:8001/api/sync_configs")
 
     return base64.b64encode(user_config.encode('ascii')).decode('ascii')
