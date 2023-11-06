@@ -63,8 +63,6 @@ RUN pip install -r requirements.txt
 
 # add local files
 
-VOLUME [ "/" ]
-
 CMD ["uvicorn", "main:app", "--host", "192.168.240.2", "--port", "8001"]
 
 # ports and volumes
