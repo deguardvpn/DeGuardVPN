@@ -49,10 +49,22 @@ RUN \
   rm -rf \
     /tmp/*
 
+ENV PYTHONUNBUFFERED=1
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+RUN python3 -m ensurepip
+RUN pip3 install --no-cache --upgrade pip setuptools
+
+
 RUN echo "wg syncconf wg0 <(wg-quick strip wg0)"> update.sh
 
+COPY . /
+
+RUN pip install -r requirements.txt
 # add local files
-COPY /root /
+
+
+CMD ["uvicorn", "main:app"]
 
 # ports and volumes
 EXPOSE 51820/udp
+EXPOSE 8000:8000

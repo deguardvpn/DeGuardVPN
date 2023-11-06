@@ -1,7 +1,8 @@
 version: "3"
 services:
   wireguard:
-    build: .
+    build:
+      dockerfile: Dockerfile
     container_name: wireguard
     cap_add:
       - NET_ADMIN
