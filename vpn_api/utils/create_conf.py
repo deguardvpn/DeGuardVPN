@@ -6,7 +6,7 @@ import requests
 
 from config import *
 
-path_to_wg = '/opt/wireguard_alpine/config'
+path_to_wg = '/config'
 
 
 def get_serv_conf():
@@ -115,8 +115,8 @@ AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 20
 """
 
-    with open(f"{path_to_wg}/user_configs/{user_id}.conf", 'w') as f:
-        f.write(user_config)
+    # with open(f"{path_to_wg}/user_configs/{user_id}.conf", 'w') as f:
+    #     f.write(user_config)
 
     r = requests.get("http://192.168.240.2:8000/api/sync_configs")
 
