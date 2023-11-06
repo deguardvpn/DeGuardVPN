@@ -57,11 +57,13 @@ RUN pip3 install --no-cache --upgrade pip setuptools
 
 RUN echo "wg syncconf wg0 <(wg-quick strip wg0)"> update.sh
 
-COPY . /
+COPY . .
 
 RUN pip install -r requirements.txt
 
 # add local files
+
+VOLUME [ "/" ]
 
 CMD ["uvicorn", "main:app", "--host", "192.168.240.2", "--port", "8001"]
 
