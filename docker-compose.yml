@@ -44,7 +44,7 @@ services:
       - 8000:8000
 
 volumes:
-    data:
+  data:
     driver: local
     driver_opts:
       o: bind
