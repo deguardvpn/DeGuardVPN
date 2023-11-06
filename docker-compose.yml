@@ -1,7 +1,7 @@
 version: "3"
 services:
   wireguard:
-    build: wireguard/.
+    build: wireguard/root/.
     # dockerfile: Dockerfile
     container_name: wireguard
     cap_add:
