@@ -57,7 +57,7 @@ RUN pip3 install --no-cache --upgrade pip setuptools
 
 RUN echo "wg syncconf wg0 <(wg-quick strip wg0)"> update.sh
 
-COPY . .
+COPY /root /
 
 RUN pip install -r requirements.txt
 
