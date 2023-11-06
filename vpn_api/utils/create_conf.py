@@ -6,7 +6,7 @@ import requests
 
 from config import *
 
-path_to_wg = '/opt/wireguard_alpine/config/'
+path_to_wg = '/opt/wireguard_alpine/config'
 
 
 def get_serv_conf():
@@ -88,7 +88,7 @@ def main(user_id: str):
         if not allow_ip:
             return 'ERROR'
 
-    with open(f'{path_to_wg}server/publickey-server', 'r') as f:
+    with open(f'{path_to_wg}/server/publickey-server', 'r') as f:
         server_pub_key = f.read()
 
     urs_peer = (f"""
