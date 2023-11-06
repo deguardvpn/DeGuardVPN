@@ -96,6 +96,7 @@ PublicKey = {client_pub_key}
 AllowedIPs = {allow_ip}/32
 # {user_id}
 
+
 """)
 
     with open(f"{path_to_wg}/wg0.conf", "a") as f:
