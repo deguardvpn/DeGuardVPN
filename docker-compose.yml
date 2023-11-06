@@ -20,7 +20,7 @@ services:
       #- PERSISTENTKEEPALIVE_PEERS= #optional
       - LOG_CONFS=true #optional
     volumes:
-      - /opt/wireguard_alpine/config:/config
+      - myapp:/opt/wireguard_alpine/config:/config
       - /lib/modules:/lib/modules #optional
     networks:
       net:
@@ -36,13 +36,15 @@ services:
     build: vpn_api/.
     container_name: vpn_api
     volumes:
-      - /opt/wireguard_alpine/config:/config
+      - myapp:/opt/wireguard_alpine/config:/config
     networks:
       net:
         ipv4_address: 192.168.240.3
     ports:
       - 8000:8000
 
+volumes:
+  myapp:
 
 networks:
   net:
