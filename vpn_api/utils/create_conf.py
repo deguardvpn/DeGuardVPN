@@ -31,8 +31,7 @@ def generate_wireguard_keys():
     return private_key, pubkey_key
 
 
-def increment_act(ip: str):
-    ip = ip.split('.')
+def increment_act(ip):
 
     if int(ip[2]) == 0 and int(ip[3]) < 252:
         ip[3] = str(int(ip[-1]) + 1)
@@ -86,8 +85,8 @@ def main(user_id: str):
 
         last_ip[-1] = last_ip[-1].split('/')[0]
         print(last_ip)
-        
-        allow_ip = increment_act(str(last_ip))
+
+        allow_ip = increment_act(last_ip)
         
 
     with open(f'{path_to_wg}/server/publickey-server', 'r') as f:
