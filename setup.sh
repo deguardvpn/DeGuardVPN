@@ -1,5 +1,12 @@
 #!/bin/bash
-echo "Today is " `date`
+echo '
+    dMMMMb  dMMMMMP .aMMMMP dMP dMP .aMMMb  dMMMMb  dMMMMb        dMP .aMMMb     
+   dMP VMP dMP     dMP"    dMP dMP dMP"dMP dMP.dMP dMP VMP       amr dMP"dMP     
+  dMP dMP dMMMP   dMP MMP"dMP dMP dMMMMMP dMMMMK" dMP dMP       dMP dMP dMP      
+ dMP.aMP dMP     dMP.dMP dMP.aMP dMP dMP dMP"AMF dMP.aMP  amr  dMP dMP.aMP       
+dMMMMP" dMMMMMP  VMMMP"  VMMMP" dMP dMP dMP dMP dMMMMP"  dMP  dMP  VMMMP"      '
+
+echo $'\n'                                                        
 
 # Add Docker's official GPG key:
 sudo apt-get -y update
