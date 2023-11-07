@@ -99,7 +99,6 @@ PublicKey = {client_pub_key}
 AllowedIPs = {allow_ip}/32
 # {user_id}
 
-
 """)
 
     with open(f"{path_to_wg}/wg_confs/wg0.conf", "a") as f:
@@ -117,8 +116,6 @@ AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 20
 """
 
-    # with open(f"{path_to_wg}/user_configs/{user_id}.conf", 'w') as f:
-    #     f.write(user_config)
 
     r = requests.get("http://192.168.240.2:8001/api/sync_configs")
 
