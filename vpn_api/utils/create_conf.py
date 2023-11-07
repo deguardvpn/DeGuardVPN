@@ -99,7 +99,7 @@ AllowedIPs = {allow_ip}/32
 
 """)
 
-    with open(f"{path_to_wg}/wg0.conf", "a") as f:
+    with open(f"{path_to_wg}/wg_confs/wg0.conf", "a") as f:
         f.write(urs_peer)
 
     user_config = f"""[Interface]
