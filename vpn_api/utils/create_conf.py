@@ -82,9 +82,13 @@ def main(user_id: str):
         allow_ip = '10.0.0.2'
     else:
         last_ip = serv_conf.split('\n')[-4].split()[-1].split('.')
-        last_ip[-1] = last_ip[-1].split('/')[0]
+        print(last_ip)
 
+        last_ip[-1] = last_ip[-1].split('/')[0]
+        print(last_ip)
+        
         allow_ip = increment_act(str(last_ip))
+        
 
     with open(f'{path_to_wg}/server/publickey-server', 'r') as f:
         server_pub_key = f.read()
