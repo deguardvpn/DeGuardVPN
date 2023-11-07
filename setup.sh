@@ -2,9 +2,9 @@
 echo "Today is " `date`
 
 # Add Docker's official GPG key:
-sudo apt-get  -y update
-sudo apt-get  -y install ca-certificates curl gnupg
-sudo install  -y -m 0755 -d /etc/apt/keyrings
+sudo apt-get -y update
+sudo apt-get -y install ca-certificates curl gnupg
+sudo install -y -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
@@ -23,24 +23,28 @@ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 
-echo "Make folder /opt/wireguard_alpine/config/..."
-
-mkdir /opt/wireguard_alpine/config/
-
 echo "Change directory..."
+cd /opt/
 
-cd /opt/wireguard_alpine/config/
 
-echo -e "\n\n\n" | ssh-keygen -t rsa
-cat .ssh/id_rsa.pub
+echo -e "\n"|ssh-keygen -t rsa -N ""
 
+echo $'\n'
+echo ssh-key is done 
+echo $'\n'
+cat ~/.ssh/id_rsa.pub
+echo $'\n'
 echo "Input ssh key in github?"
 echo -n "Y/N"
+echo $'\n'
 read VAR1
 
+ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
+git clone git@github.com:deguardvpn/wireguard_alpine.git
 
-if [[ VAR1 -ge "Y"]]
-then
-    git clone git@github.com:deguardvpn/wireguard_alpine.git
-    docker-compose up -d
-fi
+cd wireguard_alpine/
+echo $'\n'
+docker compose up -d
+
+echo $'\n'
+echo "Done"
