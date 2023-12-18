@@ -1,4 +1,6 @@
 from fastapi import APIRouter, Depends, Response, HTTPException
+
+import schemas
 from api.auth import api_key_auth, oauth2_scheme
 from api.configs_controller import config_crud as crud
 
@@ -16,6 +18,14 @@ def create_user_config_from_user_id(user_id: str, api_key: str = Depends(oauth2_
         user_config = crud.create_user_config(user_id)
 
         return Response(content=user_config, media_type='text')
+
+
+@router.delete('/delete_by_procedure')
+def delete_configs(data: schemas.DataForDelete):
+    user_ids = data.data
+
+    return crud.delete_configs(user_ids)
+
 
 # @router.delete('/{user_id}')
 # def delete_config_by_user_id(user_id: str, db: Session = Depends(get_db), api_key: str = Depends(oauth2_scheme)):

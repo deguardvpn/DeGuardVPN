@@ -1,7 +1,6 @@
 import uuid
 from datetime import datetime
 from typing import Union
-
 from pydantic import BaseModel, Field
 from sqlalchemy import UUID, TIMESTAMP
 
@@ -56,3 +55,7 @@ class PlansModelOut(BaseModel):
 class PlansModelIn(BaseModel):
     user_id: uuid.UUID
     user_plan: int
+
+
+class DataForDelete(BaseModel):
+    data: list
