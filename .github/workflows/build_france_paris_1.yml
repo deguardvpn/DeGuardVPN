@@ -1,0 +1,29 @@
+#name: Build and run on dev env
+#on:
+#    push:
+#        branches: [main]
+#jobs:
+#    build:
+#        runs-on: [self-hosted, run_dev]
+#        steps:
+#          - name: "Deploy on server"
+#            uses: appleboy/ssh-action@v1.0.0
+#            with:
+#                host: ${{ secrets.SERVER_HOST_DEV }}
+#                username: ${{ secrets.SERVER_USERNAME }}
+#                password: ${{ secrets.PASSWORD_DEV}}
+#                key: ${{ secrets.SERVER_KEY_DEV }}
+#                port: ${{ secrets.SERVER_PORT }}
+#                script: |
+#                  touch ser_update
+#                  cd dApp-Asterizm-NextJS
+#                  docker stop dapp_nextjs
+#                  docker rm dapp_nextjs
+#                  docker rmi dapp-asterizm-nextjs_app-nextjs
+#                  git pull
+#                  docker-compose up -d
+#                  cd
+#                  rm ser_update
+#
+#
+#
