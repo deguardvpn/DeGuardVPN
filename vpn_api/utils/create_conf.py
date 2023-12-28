@@ -114,6 +114,6 @@ AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 20
 """
 
-    r = requests.get("http://192.168.240.2:8001/api/sync_configs")
+    r = requests.get("http://192.168.240.2:8002/api/sync_configs")
 
     return base64.b64encode(user_config.encode('ascii')).decode('ascii')
