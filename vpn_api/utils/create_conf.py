@@ -79,11 +79,9 @@ def main(user_id: str):
     if find_configs(serv_conf) == 0:
         allow_ip = '10.0.0.2'
     else:
-        last_ip = serv_conf.split('\n')[-4].split()[-1].split('.')
-        print(last_ip)
+        last_ip = serv_conf.strip().split('\n')[-3].split()[-1].split('.')
 
         last_ip[-1] = last_ip[-1].split('/')[0]
-        print(last_ip)
 
         allow_ip = increment_act(last_ip)
 
