@@ -10,14 +10,15 @@ router = APIRouter(
 )
 
 
+# api_key: str = Depends(oauth2_scheme)
 @router.post('/create/{user_id}')
-def create_user_config_from_user_id(user_id: str, api_key: str = Depends(oauth2_scheme)):
-    if not api_key_auth(api_key):
-        raise HTTPException(status_code=401, detail=f"Incorrect api token {api_key}")
-    else:
-        user_config = crud.create_user_config(user_id)
+def create_user_config_from_user_id(user_id: str, ):
+    # if not api_key_auth(api_key):
+    #     raise HTTPException(status_code=401, detail=f"Incorrect api token {api_key}")
+    # else:
+    user_config = crud.create_user_config(user_id)
 
-        return Response(content=user_config, media_type='text')
+    return Response(content=user_config, media_type='text')
 
 
 @router.delete('/delete_by_procedure')
@@ -25,7 +26,6 @@ def delete_configs(data: schemas.DataForDelete):
     user_ids = data.data
 
     return crud.delete_configs(user_ids)
-
 
 # @router.delete('/{user_id}')
 # def delete_config_by_user_id(user_id: str, db: Session = Depends(get_db), api_key: str = Depends(oauth2_scheme)):
