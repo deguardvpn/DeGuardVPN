@@ -8,7 +8,9 @@ def create_user_config(user_id: str):
 
 
 def delete_configs(user_ids: list):
-    with open('../../../config/wg_confs/wg0.conf', 'r') as f:
+    path_to_wg = '/config'
+
+    with open(f'{path_to_wg}/wg_confs/wg0.conf', 'r') as f:
         wg0_conf = f.read()
 
     print(wg0_conf)
@@ -29,27 +31,15 @@ def delete_configs(user_ids: list):
 
                 wg0_conf = wg0_conf.replace(res, '')
 
-            with open('../../../config/wg_confs/wg0.conf', 'w') as f:
-                f.write(wg0_conf)
-
         else:
             start, end = wg0_conf.find(target_start), wg0_conf.find(target_end)
 
             res = wg0_conf[start:end + 41]
             wg0_conf = wg0_conf.replace(res, '')
 
-            with open('../../../config/wg_confs/wg0.conf', 'w') as f:
-                f.write(wg0_conf)
-
-        with open('../../../config/wg_confs/wg0.conf', 'w') as f:
+        with open(f'{path_to_wg}/wg_confs/wg0.conf', 'w') as f:
             f.write(wg0_conf)
 
-        print(wg0_conf)
-
-        print("[TASK DONE]")
-        # r = requests.get("http://192.168.240.2:8002/api/sync_configs")
+        r = requests.get("http://192.168.240.2:8002/api/sync_configs")
 
     return True
-
-
-delete_configs("5da60736-6cef-4ab2-849b-2064ae055f34")
