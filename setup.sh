@@ -1,10 +1,13 @@
 #!/bin/bash
 echo '
-    dMMMMb  dMMMMMP .aMMMMP dMP dMP .aMMMb  dMMMMb  dMMMMb        dMP .aMMMb     
-   dMP VMP dMP     dMP"    dMP dMP dMP"dMP dMP.dMP dMP VMP       amr dMP"dMP     
-  dMP dMP dMMMP   dMP MMP"dMP dMP dMMMMMP dMMMMK" dMP dMP       dMP dMP dMP      
- dMP.aMP dMP     dMP.dMP dMP.aMP dMP dMP dMP"AMF dMP.aMP  amr  dMP dMP.aMP       
-dMMMMP" dMMMMMP  VMMMP"  VMMMP" dMP dMP dMP dMP dMMMMP"  dMP  dMP  VMMMP"      '
+     _                                  _   _         
+    | |                                | | (_)        
+  __| |_____  ____ _   _ _____  ____ __| |  _  ___    
+ / _  | ___ |/ _  | | | (____ |/ ___) _  | | |/ _ \   
+( (_| | ____( (_| | |_| / ___ | |  ( (_| |_| | |_| |  
+ \____|_____)\___ |____/\_____|_|   \____(_)_|\___/   
+            (_____|                                                                                                                                                                                                                                                                                                                                                                                                                                   
+'
 
 echo $'\n'                                                        
 

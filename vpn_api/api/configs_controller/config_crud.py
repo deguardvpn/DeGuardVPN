@@ -1,4 +1,5 @@
 from utils.create_conf import main
+import requests
 
 
 def create_user_config(user_id: str):
@@ -33,5 +34,7 @@ def delete_configs(user_ids: list):
 
         with open('../../../config/wg_confs/wg0.conf', 'w') as f:
             f.write(wg0_conf)
+
+        r = requests.get("http://192.168.240.2:8001/api/sync_configs")
 
     return True
