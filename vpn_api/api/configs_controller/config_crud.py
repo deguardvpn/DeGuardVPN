@@ -28,11 +28,18 @@ def delete_configs(user_ids: list):
                 res = wg0_conf[start:end + 41]
 
                 wg0_conf = wg0_conf.replace(res, '')
+
+            with open('../../../config/wg_confs/wg0.conf', 'w') as f:
+                f.write(wg0_conf)
+
         else:
             start, end = wg0_conf.find(target_start), wg0_conf.find(target_end)
 
             res = wg0_conf[start:end + 41]
             wg0_conf = wg0_conf.replace(res, '')
+
+            with open('../../../config/wg_confs/wg0.conf', 'w') as f:
+                f.write(wg0_conf)
 
         with open('../../../config/wg_confs/wg0.conf', 'w') as f:
             f.write(wg0_conf)
