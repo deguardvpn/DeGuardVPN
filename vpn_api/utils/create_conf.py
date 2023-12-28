@@ -32,7 +32,6 @@ def generate_wireguard_keys():
 
 
 def increment_act(ip):
-
     if int(ip[2]) == 0 and int(ip[3]) < 252:
         ip[3] = str(int(ip[-1]) + 1)
         return '.'.join(ip)
@@ -87,7 +86,6 @@ def main(user_id: str):
         print(last_ip)
 
         allow_ip = increment_act(last_ip)
-        
 
     with open(f'{path_to_wg}/server/publickey-server', 'r') as f:
         server_pub_key = f.read()
@@ -115,7 +113,6 @@ Endpoint = {server_ip}:{WG_PORT}
 AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 20
 """
-
 
     r = requests.get("http://192.168.240.2:8001/api/sync_configs")
 
