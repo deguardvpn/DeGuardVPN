@@ -13,8 +13,6 @@ def delete_configs(user_ids: list):
     with open(f'{path_to_wg}/wg_confs/wg0.conf', 'r') as f:
         wg0_conf = f.read()
 
-    print(wg0_conf)
-
     for user_id in user_ids:
 
         target_start = f'#NP {user_id}'
@@ -40,6 +38,6 @@ def delete_configs(user_ids: list):
         with open(f'{path_to_wg}/wg_confs/wg0.conf', 'w') as f:
             f.write(wg0_conf)
 
-        r = requests.get("http://192.168.240.2:8002/api/sync_configs")
+        r = requests.get("http://192.168.240.2:8001/api/sync_configs")
 
     return True
