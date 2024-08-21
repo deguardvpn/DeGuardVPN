@@ -49,7 +49,7 @@ volumes:
     driver_opts:
       o: bind
       type: none
-      device: /opt/wireguard_alpine/config
+      device: /opt/DeGuardVPN/config
 
 networks:
   net:
