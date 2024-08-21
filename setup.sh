@@ -13,6 +13,7 @@ echo $'\n'
 
 # Add Docker's official GPG key:
 sudo apt-get -y update
+sudu apt-get -y upgrade
 sudo apt-get -y install ca-certificates curl gnupg
 sudo install -y -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -34,27 +35,37 @@ iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 
 echo "Change directory..."
+# shellcheck disable=SC2164
 cd /opt/
 
 
-echo -e "\n"|ssh-keygen -t rsa -N ""
+#echo -e "\n"|ssh-keygen -t rsa -N ""
+#
+#echo $'\n'
+#echo ssh-key is done
+#echo $'\n'
+#cat ~/.ssh/id_rsa.pub
+#echo $'\n'
+#echo "Input ssh key in github?"
+#echo -n "Y/N"
+#echo $'\n'
+#read VAR1
+#
+#ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
+#git clone git@github.com:deguardvpn/wireguard_alpine.git
+git clone https://github.com/deguardvpn/DeGuardVPN
 
+# shellcheck disable=SC2164
+cd DeGuardVPN/
 echo $'\n'
-echo ssh-key is done 
+docker compose up -d --build
 echo $'\n'
-cat ~/.ssh/id_rsa.pub
+echo "DeGuardVPN done"
 echo $'\n'
-echo "Input ssh key in github?"
-echo -n "Y/N"
-echo $'\n'
-read VAR1
+echo "Install 3x-ui"
 
-ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
-git clone git@github.com:deguardvpn/wireguard_alpine.git
-
-cd wireguard_alpine/
-echo $'\n'
+git clone https://github.com/MHSanaei/3x-ui.git
+# shellcheck disable=SC2164
+cd 3x-ui
 docker compose up -d
 
-echo $'\n'
-echo "Done"

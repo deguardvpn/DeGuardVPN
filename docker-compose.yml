@@ -3,7 +3,7 @@ services:
   wireguard:
     build: wireguard/.
     # dockerfile: Dockerfile
-    container_name: wireguard
+    container_name: DEGUARD_WG
     cap_add:
       - NET_ADMIN
       - SYS_MODULE #optional
@@ -34,7 +34,7 @@ services:
 
   vpn_api:
     build: vpn_api/.
-    container_name: vpn_api
+    container_name: DEGUARD_API
     volumes:
       - data:/config
     networks:

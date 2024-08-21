@@ -41,3 +41,4 @@ def delete_configs(user_ids: list):
         r = requests.get("http://192.168.240.2:8001/api/sync_configs")
 
     return True
+
