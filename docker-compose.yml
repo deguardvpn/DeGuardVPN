@@ -30,7 +30,7 @@ services:
       - 8001:8001
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
-    restart: unless-stopped
+    restart: always
 
   vpn_api:
     build: vpn_api/.
@@ -42,6 +42,7 @@ services:
         ipv4_address: 192.168.240.3
     ports:
       - 8000:8000
+    restart: always
 
 volumes:
   data:

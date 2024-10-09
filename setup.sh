@@ -24,6 +24,7 @@ echo $'\n'
 # Add Docker's official GPG key:
 sudo apt-get -y update
 sudu apt-get -y upgrade
+sudo apt-get -y install golang-go
 sudo apt-get -y install ca-certificates curl gnupg
 sudo install -y -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -37,7 +38,7 @@ echo \
 sudo apt-get -y update
 
 sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-docker
+sudo systemctl start docker
 
 sudo curl -L "https://github.com/docker/compose/releases/download/v2.29.1/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
@@ -52,27 +53,12 @@ echo "Change directory..."
 # shellcheck disable=SC2164
 cd /opt/
 
-
-#echo -e "\n"|ssh-keygen -t rsa -N ""
-#
-#echo $'\n'
-#echo ssh-key is done
-#echo $'\n'
-#cat ~/.ssh/id_rsa.pub
-#echo $'\n'
-#echo "Input ssh key in github?"
-#echo -n "Y/N"
-#echo $'\n'
-#read VAR1
-#
-#ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts
-#git clone git@github.com:deguardvpn/wireguard_alpine.git
 git clone https://github.com/deguardvpn/DeGuardVPN
 
 # shellcheck disable=SC2164
 cd DeGuardVPN/
 echo $'\n'
-docker compose up -d --build
+docker-compose up -d --build
 echo $'\n'
 echo "DeGuardVPN done"
 cd /opt/
@@ -82,10 +68,14 @@ echo "Install 3x-ui"
 git clone https://github.com/MHSanaei/3x-ui.git
 # shellcheck disable=SC2164
 cd 3x-ui
-docker compose up -d
+docker-compose up -d --build
+openssl req -x509 -newkey rsa:4096 -nodes -sha256 -keyout private.key -out public.key -days 3650 -subj "/CN=APP"
+docker cp private.key 3x-ui:private.key
+docker cp public.key 3x-ui:public.key
 
 ufw allow 80
 ufw allow 443
+ufw allow 9999
 
 iptables -I FORWARD -m string --algo bm --string "BitTorrent" -j DROP
 iptables -I FORWARD -m string --algo bm --string "BitTorrent protocol" -j DROP
@@ -112,4 +102,8 @@ iptables -I FORWARD -m string --algo bm --string "announce_request" -j DROP
 iptables -I FORWARD -m string --algo bm --string "bittorrent" -j DROP
 iptables -I FORWARD -m string --algo bm --string "tracker" -j DROP
 
+cd /opt/
+git clone https://github.com/XTLS/RealiTLScanner.git
+cd RealiTLScanner/
 
+go build
